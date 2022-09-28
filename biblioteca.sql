@@ -57,8 +57,23 @@ create table libro(
 	estado integer
 )
 
-create table prestamo(
+create table Prestamo(
 	id integer,
-	id_estudiante
+	id_estudiante integer,
+	id_libro integer,
+	fecha_prestamo date,
+	fecha_devolucion date,
+	cantidad integer,
+	observacion varchar(60),
+	estado integer,
+)
 
-) 
+create table Usuarios(
+	id integer,
+	usuario varchar(50),
+	nombre varchar(60),
+	clave varchar(50),
+	rol varchar(40),
+	estado integer
+)
+
