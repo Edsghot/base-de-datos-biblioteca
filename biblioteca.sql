@@ -1,82 +1,82 @@
-﻿create database Biblioteca1
+﻿create database Biblioteca2
 go
-use Biblioteca1
+use Biblioteca2
 go
 
 create table Autor (
-	id Integer IDENTITY(1,1),-- id autoincremnta
-	autor varchar(100),
-	imagen varchar (100),
-	estado binary 
+	id Integer IDENTITY(1,1) not null,
+	autor varchar(100) not null,
+	imagen varchar (100) not null,
+	estado binary not null 
 )
 go
 create table Configuracion(
 	id_c integer not null, 
-	nombre varchar(60), 
-	celular char(10), --9 digitos -- puro numero
-	direccion varchar(60), 
-	correo varchar(80)  -- que contenga @
+	nombre varchar(60) not null, 
+	celular char(10) not null,
+	direccion varchar(60) not null, 
+	correo varchar(80) not null 
 )
 go
 create table Editorial(
 	id_e integer not null, 
-	editorial varchar(100), 
-	estado bit, --boolean
+	editorial varchar(100) not null, 
+	estado bit not null, 
 )
 go
 create table Estudiante(
-	codigo char(6) not null, --char 6 digitos 
-	DNI char(8), -- char puro numeros
-	nombre varchar(40), 
-	apellido varchar(50), 
-	carrera varchar(100),
-	direccion varchar(60),
-	celular char(9), -- numeros    
-	estado bit -- booleano - bit
+	codigo char(6) not null, 
+	DNI char(8) not null, 
+	nombre varchar(40) not null, 
+	apellido varchar(50) not null, 
+	carrera varchar(100) not null,
+	direccion varchar(60) not null,
+	celular char(9) not null,   
+	estado bit not null
 )
 
 go
 
 create table materia(
 	id integer not null, 
-	materia varchar(80),
-	estado bit --bit
+	materia varchar(80) not null,
+	estado bit not null
 )
 go
 create table libro(
 	id integer not null,
-	titulo varchar(100),
-	cantidad integer,
-	id_autor integer, --foreing
-	id_editorial integer, --foreig
-	id_materia integer, --foreing
-	anio_edicion date, 
-	num_pagina integer,
-	descripcion text,
-	imagen varchar(150),
-	estado bit --default 0
+	titulo varchar(100) not null,
+	cantidad integer not null,
+	id_autor integer not null, 
+	id_editorial integer not null, 
+	id_materia integer not null, 
+	anio_edicion date not null, 
+	num_pagina integer not null,
+	descripcion text not null,
+	imagen varchar(150) not null,
+	estado bit not null
 )
 go
 
 create table Prestamo(
 	id integer not null,
-	codigo_estudiante char(6), --foreing
-	id_libro integer, -- foreing
-	fecha_prestamo date,
-	fecha_devolucion date,
-	cantidad integer,
-	observacion varchar(60),
-	estado bit, -- boolean
+	codigo_estudiante char(6) not null,
+	id_libro integer not null, 
+	fecha_prestamo date not null,
+	fecha_devolucion date not null,
+	cantidad integer not null,
+	observacion varchar(60) not null,
+	estado bit not null, 
 )
 go
 
 create table Usuarios(
-	id integer not null, --primary key
-	usuario varchar(50),
-	nombre varchar(60),
-	clave varchar(50),
-	rol varchar(40), --docente
-	estado bit 
+	id integer not null, 
+	usuario varchar(50) not null,
+	nombre varchar(60) not null,
+	clave varchar(50) not null,
+	rol varchar(40) not null, 
+	estado bit not null
 )
 
 --::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -91,12 +91,6 @@ create table Usuarios(
 ALTER TABLE Autor
 ADD constraint PK_Autor
 primary key(id);
-
--- agregando una restriccion para que sea pura letras la columna autor
-
-alter table Autor
-add constraint CHK_autor_letras
-check(autor like '[A-Z]')
 
 --Agregando unique a Autor
 
@@ -295,7 +289,7 @@ insert into libro values(2,'Programacion en C',35,4, 3,22,'2022',315,'Se trata d
 -->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 insert into Prestamo values (1,'201068',2,'04/10/2022','13/10/2022',2,'el forro esta dañado',	1)
-insert into Prestamo values (1,'201034',2,'02/10/2022','10/10/2022',2,'Ninguna',1)
+insert into Prestamo values (2,'201034',2,'02/10/2022','10/10/2022',2,'Ninguna',1)
 
 -->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 -->>>>>>>>>>> tabla USUARIOS <<<<<<<<<<<<<<<<<>
